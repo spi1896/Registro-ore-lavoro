@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro Ore Lavoro</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <h1>Registro Ore Lavoro</h1>
+  <form id="work-form">
+    <label>Inizio lavoro: <input type="time" id="start-time"></label><br>
+    <label>Inizio pausa pranzo: <input type="time" id="break-start"></label><br>
+    <label>Fine pausa pranzo: <input type="time" id="break-end"></label><br>
+    <label>Fine lavoro: <input type="time" id="end-time"></label><br>
+    <button type="submit">Salva</button>
+  </form>
+  <div id="summary"></div>
+  <button onclick="generatePDF()">Esporta PDF Mensile</button>
+
+  <script src="app.js"></script>
+</body>
+</html>
