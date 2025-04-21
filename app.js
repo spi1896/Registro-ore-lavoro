@@ -49,6 +49,10 @@ function salvaDati() {
   }
 
   const oreLavorate = calcolaOre(ingresso, pausa, uscita);
+
+  // Mostra ore calcolate nella pagina
+  document.getElementById("ore-calcolate").textContent = oreLavorate;
+
   const giornata = {
     data,
     ingresso,
@@ -60,6 +64,10 @@ function salvaDati() {
   let registro = JSON.parse(localStorage.getItem("registro")) || [];
   registro.push(giornata);
   localStorage.setItem("registro", JSON.stringify(registro));
+
+  mostraRegistro();
+  document.getElementById("form").reset();
+}
 
   function mostraRegistro() {
   const registro = JSON.parse(localStorage.getItem("registro")) || [];
