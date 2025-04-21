@@ -37,13 +37,34 @@ function calculateHours(start, end) {
   const [h2, m2] = end.split(":").map(Number);
   return ((h2 * 60 + m2) - (h1 * 60 + m1)) / 60;
 }
+function salvaDati() {
+  const data = document.getElementById("data").value;
+  const ingresso = document.getElementById("ingresso").value;
+  const pausa = document.getElementById("pausa").value;
+  const uscita = document.getElementById("uscita").value;
 
-function saveData(record) {
-  const data = JSON.parse(localStorage.getItem("workLogs") || "[]");
-  const index = data.findIndex(r => r.date === record.date);
-  if (index > -1) data[index] = record;
-  else data.push(record);
-  localStorage.setItem("workLogs", JSON.stringify(data));
+  if (!data || !ingresso || !pausa || !uscita) {
+    alert("Compila tutti i campi.");
+    return;
+  }
+
+  const oreLavorate = calcolaOre(ingresso, pausa, uscita);
+  const giornata = {
+    data,
+    ingresso,
+    pausa,
+    uscita,
+    oreLavorate
+  };
+
+  let registro = JSON.parse(localStorage.getItem("registro")) || [];
+  registro.push(giornata);
+  localStorage.setItem("registro", JSON.stringify(registro));
+
+  mostraRegistro();
+  document.getElementById("form").reset();
+}
+
 }
 
 function showSummary() {
