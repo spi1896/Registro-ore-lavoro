@@ -61,8 +61,19 @@ function salvaDati() {
   registro.push(giornata);
   localStorage.setItem("registro", JSON.stringify(registro));
 
-  mostraRegistro();
-  document.getElementById("form").reset();
+  function mostraRegistro() {
+  const registro = JSON.parse(localStorage.getItem("registro")) || [];
+  const elenco = document.getElementById("registro");
+  elenco.innerHTML = "";
+
+  registro.forEach(g => {
+    const riga = document.createElement("li");
+    riga.textContent = `${g.data} - Ingresso: ${g.ingresso}, Pausa: ${g.pausa}, Uscita: ${g.uscita}, Ore: ${g.oreLavorate}`;
+    elenco.appendChild(riga);
+  });
+
+  mostraTotaleMese(registro);
+}
 }
 
 }
